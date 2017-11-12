@@ -7,9 +7,8 @@ import org.apache.commons.csv.CSVRecord;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
+
 
 /**
  * Created by LaunchCode
@@ -75,14 +74,48 @@ public class JobData {
         for (HashMap<String, String> row : allJobs) {
 
             String aValue = row.get(column);
-
-            if (aValue.contains(value)) {
+///////////////////////////////////////new change ignorecase(value)///////////
+            if (aValue.contains(value) || aValue.equalsIgnoreCase(value)) {
                 jobs.add(row);
             }
         }
 
         return jobs;
     }
+
+    public static ArrayList<HashMap<String, String>>findByValue(String value) {
+        loadData();
+
+
+        ArrayList<HashMap<String, String>> jobs = new ArrayList<>();
+
+
+        for (HashMap<String, String> entry : allJobs) {
+
+            for (String key : entry.keySet()) {
+
+                String aValue = entry.get(key);
+
+
+                if (aValue.toLowerCase().contains(value.toLowerCase())) {
+
+                    if (!jobs.contains(entry)) {
+
+                        jobs.add(entry);
+
+                    }
+
+                }
+
+            }
+
+
+
+        }
+        return jobs;
+    }
+
+
 
     /**
      * Read in data from a CSV file and store it in a list
