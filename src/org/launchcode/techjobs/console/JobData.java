@@ -75,16 +75,16 @@ public class JobData {
 
             String aValue = row.get(column);
 
-            if (aValue.toLowerCase().contains(value.toLowerCase())) {
+            //if (aValue.toLowerCase().contains(value.toLowerCase())) {
                 if (aValue.contains(value)) {
                     jobs.add(row);
                 }
             }
 
-
-        }
         return jobs;
-    }
+        }
+
+
 
 
     public static ArrayList<HashMap<String, String>>findByValue(String value) {
