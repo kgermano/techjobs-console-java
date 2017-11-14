@@ -74,14 +74,18 @@ public class JobData {
         for (HashMap<String, String> row : allJobs) {
 
             String aValue = row.get(column);
-///////////////////////////////////////new change ignorecase(value)///////////
-            if (aValue.contains(value) || aValue.equalsIgnoreCase(value)) {
-                jobs.add(row);
-            }
-        }
 
+            if (aValue.toLowerCase().contains(value.toLowerCase())) {
+                if (aValue.contains(value)) {
+                    jobs.add(row);
+                }
+            }
+
+
+        }
         return jobs;
     }
+
 
     public static ArrayList<HashMap<String, String>>findByValue(String value) {
         loadData();
